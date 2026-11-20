@@ -1,15 +1,17 @@
-# Tekyous agent skills: tech stack diagrams for AI agents
+# Tekyous agent skills: tech stack diagrams and recommendations for AI agents
 
 Skills and plugins that bring [Tekyous](https://tekyous.dev?utm_source=github&utm_medium=readme), the tech stack
-builder and developer tools catalogue, into your coding agent. The first one draws tech stack diagrams.
+builder and developer tools catalogue, into your coding agent:
 
-Ask your coding agent to draw your project's tech stack. It reads the repository, draws the tools it uses with their
-logos, saves the picture and adds it to your README. The picture links to the same diagram in the
-[Tekyous stack builder](https://tekyous.dev/builder?utm_source=github&utm_medium=readme), fully editable.
+- **`tech-stack-recommendation`**: ask which stack or tools to use, and the agent answers from Tekyous's curated
+  stacks and tools catalogue (scores, pricing, pros and cons, trade-offs), checked against your project's constraints.
+- **`tech-stack-diagram`**: ask the agent to draw your project's tech stack. It reads the repository, draws the tools
+  with their logos, saves the picture and adds it to your README. The picture links to the same diagram in the
+  [Tekyous stack builder](https://tekyous.dev/builder?utm_source=github&utm_medium=readme), fully editable.
 
-This repository packages that for agents: a **Claude Code plugin** and a **skill** for any agent with a shell. Both
-use the free [Tekyous MCP server](https://tekyous.dev/mcp?utm_source=github&utm_medium=readme), which needs no
-sign-in and no API key.
+They come as a **Claude Code plugin** and as **skills** for any agent with a shell. Both use the free
+[Tekyous MCP server](https://tekyous.dev/mcp?utm_source=github&utm_medium=readme), which needs no sign-in and no API
+key.
 
 [![AI SaaS tech stack: tech stack diagram made with tekyous.dev](examples/ai-saas.png)](https://tekyous.dev/builder?utm_source=github&utm_medium=readme#doc=v1.VZCxTsQwDIZfJfLAQjuwdkNi4KRDQup4usEkpg3XS6LYLZyqvjsu9CC3xc73f3Yyw3vMZxRoQOh0iSPXzmOX8QwVTJTZxwDNQwXiZSClHnemRWyNkO0NC9qTgl2OY2JoDjN4pxCmBEXkt4pxWBEI9CUfvHbQD58-OMsMx6W6Zn0Z3ZVJ3cfSUKOv2enYGXgYO6XsgKMjJS0m-VkY9vsXWP6lDgUL7dNWbuI_EY8J35BvVa-RpcvE5t5MZCVmLs1MefKWuLC3Reu6-tVc4yi9XrBkn9Y5KqbgivfHVLqedbgPnbkzW__2L1YTBckXPSRF-9ip6rh8Aw)
 
@@ -17,7 +19,9 @@ sign-in and no API key.
 
 ## Install
 
-Pick one. Then ask: **"Draw this project's tech stack, save the image into the repo and add it to the README."**
+Pick one. Then ask, for example:
+- **"Draw this project's tech stack, save the image into the repo and add it to the README."**
+- **"I'm building a booking app for yoga studios and know some Python. What stack should I use?"**
 
 ### Claude Code: the plugin
 
@@ -26,17 +30,17 @@ Pick one. Then ask: **"Draw this project's tech stack, save the image into the r
 /plugin install tekyous@tekyous
 ```
 
-It adds the Tekyous MCP server and the `tech-stack-diagram` skill. The skill starts by itself when you ask for a
-tech stack diagram, or run it as `/tekyous:tech-stack-diagram`. Grok Build installs the same plugin:
+It adds the Tekyous MCP server and both skills. They start by themselves when you ask for a stack or a diagram, or
+run them as `/tekyous:tech-stack-recommendation` and `/tekyous:tech-stack-diagram`. Grok Build installs the same plugin:
 `grok plugin install tekyous/agent-skills`.
 
-### Any agent with skills: the skill
+### Any agent with skills: the skills
 
 ```bash
 npx skills add tekyous/agent-skills
 ```
 
-Or copy [`skills/tech-stack-diagram`](skills/tech-stack-diagram) into your agent's skills folder:
+Or copy the folders in [`skills/`](skills) into your agent's skills folder:
 
 | Agent | Project folder | User folder |
 |---|---|---|
@@ -55,7 +59,7 @@ Or copy [`skills/tech-stack-diagram`](skills/tech-stack-diagram) into your agent
 
 Many agents also read the shared `.agents/skills/` folder, and `npx skills add` knows more than 75 of them.
 
-The skill works with or without the MCP server connected (see [How it works](#how-it-works)).
+The skills work with or without the MCP server connected (see [How it works](#how-it-works)).
 
 ### Any MCP client: the server only
 
@@ -68,6 +72,22 @@ codex mcp add tekyous --url https://mcp.tekyous.dev/mcp                         
 ```
 
 ## How it works
+
+### `tech-stack-recommendation`
+
+The skill asks for what's missing (the kind of project, your experience, the constraints), asks Tekyous for its
+recommendation (`recommend_stack`) and the finalists' profiles (`get_tool`, `search_tools`), and answers with a short
+table: the pick per role, why it fits, its pricing and its main trade-off. It then offers a diagram of the result.
+
+**Tekyous grounds the answer; the agent decides.** Tekyous's recommendation follows the rules of its questionnaire for a
+project type and an experience level, and the catalogue doesn't list every tool. The skill tells the agent to check
+that the picks fit together and fit your constraints, to recommend a better tool even when Tekyous doesn't list it,
+and to say where and why it departs from Tekyous's pick.
+
+It calls the MCP tools when they're connected and the same server over curl when they aren't. Without network it
+can't check the catalogue, and says so.
+
+### `tech-stack-diagram`
 
 The skill reads the project's manifests and config (`package.json`, `pyproject.toml`, `requirements.txt`,
 `Dockerfile`, `docker-compose.yml`, CI workflows, the README). It writes a small diagram spec: the tools, in a few
@@ -88,8 +108,9 @@ structure, C4 levels, sequence or entity-relationship diagrams.
 
 ## What is sent, and where
 
-- **Sent:** the diagram spec only: tool names, group titles, captions, notes and connector labels. Never file
-  contents, environment values or credentials. The skill tells the agent not to open `.env` files or keys.
+- **Sent:** for a diagram, the spec only: tool names, group titles, captions, notes and connector labels. For a
+  recommendation, the project type, experience level, language and the tools looked up. Never file contents,
+  environment values or credentials. The skills tell the agent not to open `.env` files or keys.
 - **To:** `mcp.tekyous.dev` (the server) and `img.tekyous.dev` (the image). The offline route sends nothing.
 - **Stored:** images for 30 days. The diagram itself lives in its link, which anyone holding it can open, so keep
   anything private out of names and notes. Calls are logged without IP addresses for 90 days.
@@ -101,7 +122,8 @@ structure, C4 levels, sequence or entity-relationship diagrams.
 
 | Path | What it is |
 |---|---|
-| `skills/tech-stack-diagram/` | The skill: `SKILL.md`, the spec guidance and the offline encoder |
+| `skills/tech-stack-recommendation/` | The recommendation skill |
+| `skills/tech-stack-diagram/` | The diagram skill: `SKILL.md`, the spec guidance and the offline encoder |
 | `.claude-plugin/` | The Claude Code plugin (`plugin.json`) and this repository as its marketplace (`marketplace.json`) |
 | `.mcp.json` | The plugin's connection to the Tekyous MCP server |
 | `server.json`, `glama.json` | The server's entry in the [MCP Registry](https://registry.modelcontextprotocol.io) and its Glama listing |
@@ -121,5 +143,5 @@ claude plugin validate .                      # the marketplace and plugin manif
 
 After the server's `design_stack` prompt changes, run `python3 scripts/sync_design_stack.py` and commit the result.
 
-Something broke, or an agent drew something odd? Open an issue or write to
+Something broke, or an agent drew or recommended something odd? Open an issue or write to
 [contact@tekyous.dev](mailto:contact@tekyous.dev).

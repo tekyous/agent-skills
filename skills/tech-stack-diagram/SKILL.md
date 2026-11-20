@@ -3,7 +3,7 @@ name: tech-stack-diagram
 description: Draw a project's tech stack as a diagram with Tekyous. The diagram shows the tools the project uses, with their logos, grouped by role. You get a PNG for the README and a link that opens the diagram, editable, in the Tekyous stack builder. Use when the user asks to diagram, draw, picture or visualize the tech stack of this repository or of a stack they describe, or to add a tech stack diagram to a README or docs.
 license: MIT
 metadata:
-  homepage: https://tekyous.dev/agents/skill
+  homepage: https://tekyous.dev/agents/skills
   version: "1.0.0"
 ---
 

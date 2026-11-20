@@ -5,18 +5,19 @@
     "email": "contact@tekyous.dev"
   },
   "metadata": {
-    "description": "Tekyous plugins for Claude Code: tech stack diagrams and the developer tools catalogue."
+    "description": "Tekyous plugins for Claude Code: tech stack recommendations, tech stack diagrams and the developer tools catalogue."
   },
   "plugins": [
     {
       "name": "tekyous",
       "source": "./",
-      "description": "Draw your repository's tech stack as a diagram: a PNG for the README and an editable diagram in the Tekyous builder. Bundles the Tekyous MCP server and the tech-stack-diagram skill.",
-      "version": "1.0.0",
+      "description": "Choose and draw your tech stack with Tekyous: stack recommendations grounded in a curated tools catalogue, and tech stack diagrams for your README that open editable in the Tekyous builder. Bundles the Tekyous MCP server and two skills.",
+      "version": "1.1.0",
       "category": "development",
       "homepage": "https://tekyous.dev/agents",
       "tags": [
         "tech-stack-diagram",
+        "tech-stack-recommendation",
         "readme",
         "mcp"
       ]

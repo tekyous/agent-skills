@@ -1,7 +1,7 @@
 {
   "name": "tekyous",
-  "version": "1.0.0",
-  "description": "Tech stack diagrams from your repository: the Tekyous MCP server (developer tools catalogue, curated stacks, diagram rendering) and a skill that reads the project, draws its tech stack, saves the PNG and adds it to the README with a link to the editable diagram.",
+  "version": "1.1.0",
+  "description": "Tech stacks from your agent, grounded in Tekyous: the MCP server (developer tools catalogue, curated stacks, stack recommendations, diagrams) and two skills. tech-stack-recommendation helps choose tools; tech-stack-diagram reads the project, draws its stack, saves the PNG and adds it to the README with a link to the editable diagram.",
   "author": {
     "name": "Tekyous",
     "email": "contact@tekyous.dev",
@@ -10,5 +10,16 @@
   "homepage": "https://tekyous.dev/agents",
   "repository": "https://github.com/tekyous/agent-skills",
   "license": "MIT",
-  "keywords": ["tech-stack", "tech-stack-diagram", "diagram", "readme", "mcp", "developer-tools"]
+  "keywords": [
+    "tech-stack",
+    "tech-stack-diagram",
+    "tech-stack-recommendation",
+    "diagram",
+    "readme",
+    "mcp",
+    "developer-tools"
+  ],
+  "documentationUrl": "https://tekyous.dev/agents",
+  "supportUrl": "https://github.com/tekyous/agent-skills/issues",
+  "privacyPolicyUrl": "https://tekyous.dev/privacy#mcp-server"
 }
