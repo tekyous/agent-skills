@@ -13,7 +13,7 @@ They come as a **Claude Code plugin** and as **skills** for any agent with a she
 [Tekyous MCP server](https://tekyous.dev/mcp?utm_source=github&utm_medium=readme), which needs no sign-in and no API
 key.
 
-[![AI SaaS tech stack: tech stack diagram made with tekyous.dev](examples/ai-saas.png)](https://tekyous.dev/builder?utm_source=github&utm_medium=readme#doc=v1.VZCxTsQwDIZfJfLAQjuwdkNi4KRDQup4usEkpg3XS6LYLZyqvjsu9CC3xc73f3Yyw3vMZxRoQOh0iSPXzmOX8QwVTJTZxwDNQwXiZSClHnemRWyNkO0NC9qTgl2OY2JoDjN4pxCmBEXkt4pxWBEI9CUfvHbQD58-OMsMx6W6Zn0Z3ZVJ3cfSUKOv2enYGXgYO6XsgKMjJS0m-VkY9vsXWP6lDgUL7dNWbuI_EY8J35BvVa-RpcvE5t5MZCVmLs1MefKWuLC3Reu6-tVc4yi9XrBkn9Y5KqbgivfHVLqedbgPnbkzW__2L1YTBckXPSRF-9ip6rh8Aw)
+[![AI SaaS tech stack: tech stack diagram made with tekyous.dev](examples/ai-saas.png)](https://tekyous.dev/builder?utm_source=github&utm_medium=readme#doc=v1.bZJBb4MwDIX_CvJ1cNiVWydN2qROmtTjxMENLs0akiw2bKjivy-0lIZpx5jn9z7bnOHgQosCJQidBtdxUWtsAraQQ0-BtbNQPuYgWgxF1eY12yHuMiF1zFhQnaKwCa7zDOXHGXQdReg9JC2Xl3LGhfji0zB9c85MDWDpRz55qqA239rWivkarcgUqAuuY8IZ2HRN7L7WJzv0cmGDF8eibQNjNeZz_j5ika0ThqelcuOglgKaOmFZQrjzuEemVcx7jGkCcfaQ9aTEBYYxX6QFdnJMOJXBrl4bbLdvKSNT6LUiTiB399KNstfOkPwLKUH7P4g4tGRlAltkkXiee5E9t3HVqcbH0Y6uWYk2Fs0gWq3MopWEYW0WwmUV1VhN1NbOu5lID8G197_BrQ5jcB_vWMJXR0ET55mPYj-zz43JGd16Y7du6q_zVuMv)
 
 *An AI SaaS stack drawn by the Tekyous MCP server. Click it to open the diagram in the builder and edit it.*
 
