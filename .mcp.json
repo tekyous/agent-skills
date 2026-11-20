@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tekyous": {
+      "type": "http",
+      "url": "https://mcp.tekyous.dev/mcp?src=claude-plugin"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+name: check
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"   # weekly: catches a server prompt change the skill's copy hasn't picked up
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Offline links match the server's encoder
+        run: python -m unittest discover tests -v
+      - name: The skill's guidance matches the live design_stack prompt
+        run: python scripts/sync_design_stack.py --check
+      - name: Manifests are valid JSON
+        run: for f in .claude-plugin/*.json .mcp.json server.json glama.json; do python -m json.tool "$f" > /dev/null && echo "ok $f"; done

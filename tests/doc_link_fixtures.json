@@ -1,0 +1,118 @@
+[
+  {
+    "spec": {
+      "format": "tekyous-diagram",
+      "version": 1,
+      "title": "SaaS starter tech stack",
+      "groups": [
+        {
+          "id": "app",
+          "title": "App",
+          "tools": [
+            "nextjs",
+            "tailwind-css"
+          ]
+        },
+        {
+          "id": "data",
+          "title": "Data",
+          "tools": [
+            "prisma-orm",
+            {
+              "slug": "neon",
+              "caption": "Postgres"
+            }
+          ]
+        },
+        {
+          "id": "hosting",
+          "title": "Hosting",
+          "tools": [
+            "vercel"
+          ]
+        }
+      ]
+    },
+    "doc": "v1.TY-7DsIwDEV_BXluB9ZuSAyMSB0Rg5WYNDRNotjlIdR_x-WhdvTVOVfXL7ikMqBAA0L9M41cW4-u4AAV3KiwTxGabQXiJZBSLWK7YcEiVDZCppsP0yvtShozQ3N6gbdKYs6weLvvlVKYEYj0kCvPCfpw99HWhhnOU_WTLQqu7P3v_Ou5eB6w1umgBofRKRRJt1ZgMMtnNRwTiyvEMC3FnWY-ulX3YUn-9fq4oaBzztMb"
+  },
+  {
+    "spec": {
+      "format": "tekyous-diagram",
+      "version": 1,
+      "title": "Ünïcode — café ☕ tech stack",
+      "direction": "top-to-bottom",
+      "display": {
+        "preset": "tile",
+        "outline": "none"
+      },
+      "groups": [
+        {
+          "id": "api",
+          "title": "API",
+          "tools": [
+            "fastapi"
+          ],
+          "custom": [
+            {
+              "id": "worker",
+              "name": "Scraper wörker",
+              "icon": "⚙️",
+              "category": "hosting-cloud"
+            }
+          ]
+        },
+        {
+          "id": "db",
+          "title": "Data",
+          "tools": [
+            "postgresql",
+            "redis"
+          ]
+        }
+      ],
+      "connectors": [
+        {
+          "from": "api",
+          "to": "db",
+          "label": "queries"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Redis holds the job queue, not sessions.",
+          "near": "redis"
+        }
+      ]
+    },
+    "doc": "v1.TZE9TsQwEIWvYk2dINGmQ6KhQ1CiLRxnkph1PFl7wrJaReIGNCAB4gJUdIg-N9kLcAXG-wNbWeN538x79hpqCp1mKIBxvqIh5pXVTdAdZHCHIVryUJxmwJYdimp699OnoQrV5uFJGV1PH2rz8qwYTasiazMXsLIBDW9RYOpzprwkZuq2vdg7vYJiDX3AiNvVVmZnQAM769MWT3KMGTSBhj5CcbMGW8m97i38ezm7vEgVkUsSqLXsF8EsAzPEtO2PW1KYYxCx110ir03QPQa1nL72DWu2bjdvrz_fj1IbzdhQEJ_QUmTrm9w4GioYZ2O2n1qVR2bONetjN71QjQRcOLkNKLFhNiZr5L08DoVdrDokn4dgdJjqdIlOisWAwWKERHpi3EGM9-nZrtJU1ZKrouIW1S2VSoABMyVaFTGm74snKTfqIMTOh0T4BQ"
+  },
+  {
+    "spec": {
+      "format": "tekyous-diagram",
+      "version": 1,
+      "template": "by-category",
+      "tools": [
+        "react",
+        "vite",
+        "django",
+        "postgresql",
+        "docker",
+        "github-actions",
+        "sentry",
+        "stripe",
+        "auth0",
+        "aws",
+        "cloudflare",
+        "redis"
+      ]
+    },
+    "doc": "v1.HY07DsIwDIbv4rmVYO1VEIObuGloWhfbAUWIu-Mw-dP_8gcWlh0NJjDaGlcdY8YkuMMALxLNfMB0Hdzdz4JGHpzbGJwSS_OQMReF6QZCGKy3sqcGiA88EjucrJaE9Fm6ymEjcUjZ1jqPXvEP6oLSYf9BNclnX8Bq66Xfd_dD4RqXgtItoZgV7t8f"
+  },
+  {
+    "spec": {
+      "format": "tekyous-diagram",
+      "version": 1
+    },
+    "doc": "v1.q1ZKyy_KTSxRslIqSc2uzC8t1k3JTEwvSsxV0lEqSy0qzszPU7IyrAUA"
+  }
+]
