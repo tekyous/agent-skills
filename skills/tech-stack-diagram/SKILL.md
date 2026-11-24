@@ -50,6 +50,27 @@ tools ("nextjs", "postgresql"). Use a custom tool only for what the catalogue do
 }
 ```
 
+Put the core groups first. A service the app only calls (a contact form, email, analytics) goes in a side group:
+`"side": "app"` on the group draws it under (or beside) the App group, only as big as its tools.
+
+Pick the look for where the picture goes; the default is not always the best one:
+- **Cards** (`"display": {"preset": ...}`): `simple` (logo and name, the default), `standard` (adds the category),
+  `detailed` (category, subcategory and pricing), `tile` (logo over name) or `icon` (logos only, for a badge row or
+  20 tools and more). `"outline": "none"` drops the card borders.
+- **Layout:** groups as columns (`"direction": "left-to-right"`, the default) or stacked bands (`"top-to-bottom"`),
+  or `"template": "by-category"` without groups.
+- **Colour:** each group gets a different frame colour by default. `"color"` on a group takes a palette key (`sky`,
+  `emerald`, `violet`, `amber`, `rose`, `slate`) or any `#rrggbb`.
+- **Frames:** `"fill"` (`none` for an outline, `soft`, `strong`, `solid`), `"border"` (`dashed` for an optional or
+  planned part), and the group title's `"titlePlace"` (`inside`, `above`), `"titleAlign"`, `"titleSize"` (`sm`–`xl`)
+  and `"titleColor"`.
+- **Emphasis:** set one or two tools apart with their own card background, name colour or a bigger logo:
+  `{"slug": "postgresql", "bg": "emerald", "nameColor": "#ffffff", "logoScale": 1.4}` (`logoScale` 0.6–1.8).
+  Connectors take a `"color"` and `"line": "dashed"`.
+- **Title:** `"titleAlign": "center"` spans it across the diagram; `"titleColor"` changes its colour.
+
+Vary the look from one diagram to the next instead of always sending the defaults.
+
 A custom tool's `icon` is one of `database`, `server`, `cloud`, `globe`, `lock`, `mail`, `code`, `box`, `queue`,
 `chart`, `user`, `bolt`, or one letter, digit or emoji. Its `category` is a catalogue category slug; a wrong one
 gets the list of valid slugs back in the error. The full JSON Schema: https://tekyous.dev/schemas/diagram.v1.json
@@ -112,7 +133,9 @@ diagram. Nothing is sent: the user opens the link, sees the diagram in the build
   call again until the first three are empty. Not every warning needs a change: for an existing project, a missing
   piece may simply be out of scope.
 
-Show the user the image (or its URL) and the builder link.
+Show the user the image (or its URL) and the builder link. Then say in a line which look you chose and offer the
+others (the result's `look` lists them): another card style, no borders, bands instead of columns, other colours.
+Users often don't know they can ask.
 
 ## 5. Put it in the repository
 
