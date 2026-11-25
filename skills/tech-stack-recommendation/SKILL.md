@@ -4,7 +4,7 @@ description: Recommend a tech stack for a new project, or the right tool for one
 license: MIT
 metadata:
   homepage: https://tekyous.dev/agents/skills
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Tech stack recommendation
@@ -19,10 +19,13 @@ with links to each tool's page and an editable diagram of the stack.
 Tekyous grounds the answer; it doesn't replace your judgment.
 
 - **`recommend_stack` is a starting point.** It applies the questionnaire's rules for a project type and an
-  experience level, one category at a time. It knows nothing about the user's constraints (existing code, team,
-  budget, scale, hosting, compliance, deadline), and it doesn't check that its picks fit together. Check them: one
-  database unless there's a reason for two; one backend approach (a full-stack framework's own API routes, a separate
-  backend framework, or a backend-as-a-service, not all three); an ORM sits beside a database and doesn't replace it.
+  experience level. Where a project can be built in distinct ways, it returns each **approach** (for an intermediate
+  web app: Full-Stack Framework, Backend-First, Backend as a Service) as a whole stack of its own. Approaches are
+  alternatives: choose the one that fits the user, or set out the two that are close, and never merge their tools
+  into one stack. Within an approach, a category's alternatives are swaps for its pick, not additions.
+- **It knows nothing about the user's constraints** (existing code, team, budget, scale, hosting, compliance,
+  deadline), and it doesn't check that its picks fit them. Check: one database unless there's a reason for two; one
+  backend approach; an ORM sits beside a database and doesn't replace it.
 - **The catalogue doesn't list every tool.** If the tool that fits best isn't in it, recommend it anyway and say it
   isn't in Tekyous. Never drop a better fit only because Tekyous doesn't list it, and never keep a pick that doesn't
   fit only because Tekyous made it.
@@ -34,7 +37,7 @@ Tekyous grounds the answer; it doesn't replace your judgment.
 ## 1. Understand the project
 
 Ask only for what's missing, at most two or three questions at once:
-- **What it is:** a project type key: `web_app`, `website`, `mobile_app`, `api_only`, `ai_agents`, `automation`,
+- **What it is:** a project type key: `web_app`, `website`, `mobile_app`, `api_only`, `ai_agent`, `automation`,
   `data_pipeline`, `dashboard`, `ml_project`, `browser_extension`.
 - **Who builds it:** `non_technical` (doesn't want to write code: the rules then lean to AI app builders and no-code
   tools, so use it only when that is what the user wants), `beginner`, `intermediate` or `advanced`; and the
@@ -48,8 +51,10 @@ For an existing repository, read its manifests (`package.json`, `pyproject.toml`
 
 The tools:
 - `recommend_stack` with `{"project_type": …, "experience_level": …, "preferred_language": …}` (the language is
-  optional): a pick per category with its rationale and caveats, the alternatives considered, a `builder_url` and a
-  `diagram_spec`.
+  optional): `context`, Tekyous's notes on that project type and level, and `approaches`. Each approach has a `key`,
+  a `name` and a `description` (all null when the combination has only one), its `categories` (per category, the
+  `recommended` tools in rank order with rationale, caveats and `url`, then ranked `alternatives`), a `builder_url`
+  and a `diagram_spec`.
 - `search_tools` with `{"query": "…"}` or `{"category": "databases"}`, optionally `pricing` (e.g. `["free",
   "open-source"]`), `max_learning_curve`, `min_popularity`, `min_performance`, `min_flexibility`, `min_portability`
   and `limit`: candidates for one part of the stack.
@@ -90,6 +95,7 @@ the answer as not checked against Tekyous; connecting the Tekyous MCP server, or
 
 Give the stack as a short table with these five columns: the role, your pick, one line on why it fits this project,
 its pricing (from `get_tool`), and the main trade-off. Below it:
+- when Tekyous offered several approaches, which one you chose and why, and the runner-up in a line;
 - where your pick differs from Tekyous's, and why;
 - one or two alternatives worth knowing for the parts that were close;
 - the tool page links from the results (`url`), so the user can read further.
@@ -98,7 +104,7 @@ Keep it to the parts the project needs. A small project with four tools is a goo
 
 ## 4. Offer the diagram
 
-Always end by offering a diagram of the stack you recommended. `recommend_stack`'s `builder_url` opens Tekyous's own pick, fully editable. If your recommendation differs, draw yours
+Always end by offering a diagram of the stack you recommended. The chosen approach's `builder_url` opens Tekyous's own pick, fully editable. If your recommendation differs, draw yours
 instead: `compose_diagram` with a spec of your stack (the `tech-stack-diagram` skill describes it), so the picture
 matches what you recommended. If the user is starting a repository, offer to save the diagram into its README.
 

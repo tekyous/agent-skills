@@ -6,7 +6,8 @@ The same guidance the Tekyous MCP server gives in its `design_stack` prompt. Wit
 
 You are designing a tech stack diagram with Tekyous's compose_diagram tool.
 
-1. Ground the choices in the catalogue first: recommend_stack for a project type and experience level, get_stack for a
+1. Ground the choices in the catalogue first: recommend_stack for a project type and experience level (its approaches
+   are alternatives: draw the one that fits, or one diagram each, never their tools mixed), get_stack for a
    curated stack. For an existing project, list its technologies first, then look up every one of them with
    search_tools (the calls can run in parallel). Use catalogue slugs (e.g. "nextjs", "postgresql"); only what
    search_tools does not find becomes a custom tool, with a name, an icon and a catalogue "category" slug (e.g.
@@ -17,7 +18,8 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
      them in three to five groups by role (for example App, Data, Hosting; Frontend, Backend, AI) with no
      connectors. For a larger stack (around ten tools or more), "template": "by-category" with the tools in "tools"
      and "custom" and no groups lays them out in Tekyous's catalogue category frames, the builder's own look.
-     Title it "<project> tech stack".
+     Title it "<project> tech stack", and say what the project is when its name doesn't ("acme-web storefront tech
+     stack", not "acme-web tech stack").
    - The stack and how it connects, when the user asks how the parts talk to each other (data flow, requests,
      deployment, "architecture"): the same groups, ordered the way data flows, with connectors between neighbouring
      groups (a connector that skips a group is drawn through it). Connector labels take one or two words.
@@ -25,24 +27,54 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
      diagrams or network diagrams with cloud icons; if the user wants one of those, say so rather than imitate it.
    Either way:
    - Show the tools the project chose. Leave out what every project has (the browser, its visitors), what comes
-     with a tool you already show (Jinja templates with Flask) and the project's own code: its files, modules and
-     classes are not tools. A caption says what a tool does here
+     with a tool you already show (Jinja templates with Flask; HTML, CSS and JavaScript with a web framework such as
+     Astro, Vue or Next.js) and the project's own code: its files, modules and classes are not tools. A caption says what a tool does here
      ({"slug": "cloudflare", "caption": "DNS"}) instead of a custom tool named "Cloudflare DNS". Four to twelve tools
      read best; about 20 still fit in one picture.
-   - "display": {"preset": ...} sets what a card shows: simple (logo and name, the default), tile (logo over
-     name), icon (logo only), standard or detailed (with category and pricing); "outline": "none" drops the borders.
-   - Group titles take one or two words. "direction" (groups only): "left-to-right" (the default) draws each group
-     as a column, side by side; "top-to-bottom" draws each group as a band, stacked.
+   - Pick the look for where the picture goes; the default is not always the best:
+     - "display": {"preset": ...} sets what a card shows: "simple" (logo and name, the default: a clean README
+       picture), "standard" (adds each tool's category: helps readers who don't know the tools), "detailed"
+       (category, subcategory and pricing: when cost matters), "tile" (logo over name: a compact grid) or "icon"
+       (logos only: a badge row, or 20 tools and more). "outline": "none" drops the card borders for a lighter,
+       documentation-style picture.
+     - Layout: groups as columns ("direction": "left-to-right", the default) or stacked bands ("top-to-bottom",
+       which suits many groups or a narrow page), or "template": "by-category" without groups.
+     - Colour: each group gets its own frame colour by default, different per diagram. "color" on a group takes a
+       palette key (sky, emerald, violet, amber, rose, slate) or any #rrggbb, so colours can follow a brand or a
+       meaning (for example green for everything hosted).
+     - Frames: "fill" ("none" draws an outline, "soft" the default, "strong", "solid"), "border" ("solid", or
+       "dashed" for a part that is optional or planned), and the group title's "titlePlace" ("inside" or "above"
+       the frame), "titleAlign", "titleSize" ("sm" to "xl") and "titleColor".
+     - Emphasis: to set a tool apart (the one the diagram is about, the new addition, the bottleneck), give it its
+       own card background, name colour or a bigger logo: {"slug": "postgresql", "bg": "emerald", "nameColor":
+       "#ffffff", "logoScale": 1.4} ("logoScale" 0.6 to 1.8; "bg": "transparent" leaves the card bare). One or two
+       tools per diagram: when everything stands out, nothing does. Connectors take a "color" and "line": "dashed"
+       the same way.
+     - The title: "titleAlign": "center" spans it across the diagram; "titleColor" changes its colour.
+     Vary the look from one diagram to the next instead of always sending the defaults.
+   - Group titles take one or two words.
+   - Order the groups by weight: the core of the project first (App, Data, Hosting), so nothing minor sits in the
+     middle. A service the app only calls (a contact form, email, analytics, payments for a side feature) goes in a
+     side group: {"id": "services", "title": "Services", "side": "app", ...} draws it under (or beside) the group
+     it names, only as big as its tools, instead of a full column or band.
    - Add notes only for decisions worth explaining, each "near" the group or tool it is about.
 3. Call compose_diagram. Act on what comes back before showing it:
    - "custom_matches": custom tools whose name is a catalogue tool; replace each with the slug, unless it is
      really something else (your own service that shares the name).
    - "unresolved": slugs the catalogue does not know; fix the slug (search_tools) or make it a custom tool.
    - "warnings": catalogue rules, such as two tools that conflict or a missing piece (no hosting, no database).
-   - "issues": layout problems in the drawn picture (overlaps, a connector through a card or a group).
+     "info" ones are suggestions for a builder canvas: one asking for a language next to a framework does not apply
+     when you left the language out on purpose.
+   - "issues": layout problems in the drawn picture (overlaps, a connector through a card or a group, a card whose
+     content is drawn small because of the size it was given).
+   The spec covers most layouts; a full canvas file (format "tekyous-canvas", with positions) is for exact placement
+   the spec cannot express. In one, use the values the schema lists (the display's "category" is "none",
+   "category", "subcategory" or "both", not true or false), and give cards a size in proportion to their content.
    Revise the spec and call compose_diagram again until "custom_matches", "unresolved" and "issues" are empty and
    you have weighed each warning (for an existing project, a missing piece may simply be out of scope).
-4. Show the user the image and give them the builder link: it opens the diagram, fully editable, in Tekyous.
+4. Show the user the image and give them the builder link: it opens the diagram, fully editable, in Tekyous. Then
+   say in a line which look you chose and offer the others (the result's "look" lists them): another card style,
+   no borders, bands instead of columns, other colours. Users often don't know they can ask.
 5. To put the picture in a repository (a README, docs): if you can write files, download the image URL into the repo
    (for example docs/tech-stack-diagram.png) and add the "markdown" snippet with the image path changed to that file; keep
    its link to the builder, so readers can open and edit the diagram. Otherwise give the user the snippet as it is.
