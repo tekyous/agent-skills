@@ -70,16 +70,25 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
    The spec covers most layouts; a full canvas file (format "tekyous-canvas", with positions) is for exact placement
    the spec cannot express. In one, use the values the schema lists (the display's "category" is "none",
    "category", "subcategory" or "both", not true or false), and give cards a size in proportion to their content.
-   Revise the spec and call compose_diagram again until "custom_matches", "unresolved" and "issues" are empty and
+   Fix it with revise_diagram (the returned "document" plus changes such as {"replace": "nginx-custom", "with":
+   "nginx"}) or a new compose_diagram call until "custom_matches", "unresolved" and "issues" are empty and
    you have weighed each warning (for an existing project, a missing piece may simply be out of scope).
-4. Show the user the image and give them the builder link: it opens the diagram, fully editable, in Tekyous. Then
-   say in a line which look you chose and offer the others (the result's "look" lists them): another card style,
-   no borders, bands instead of columns, other colours. Users often don't know they can ask.
+4. Show the result:
+   - Where the host renders MCP Apps (Claude, ChatGPT, VS Code, Cursor and others), the results of compose_diagram
+     and revise_diagram show as the Tekyous diagram widget: the picture in the chat, with full screen and an "Open
+     in builder" button. The user already sees the diagram: don't draw it again with another drawing, diagram or
+     visualisation tool (it would lose the logos and the editable link), and don't paste the image link.
+   - Where no picture shows (a terminal or a host without MCP Apps), show the image or give its URL, and give the
+     builder link: it opens the diagram, fully editable, in Tekyous.
+   Then say in a line which look you chose and offer the others (the result's "look" lists them): another card
+   style, no borders, bands instead of columns, other colours. Users often don't know they can ask.
 5. To put the picture in a repository (a README, docs): if you can write files, download the image URL into the repo
    (for example docs/tech-stack-diagram.png) and add the "markdown" snippet with the image path changed to that file; keep
    its link to the builder, so readers can open and edit the diagram. Otherwise give the user the snippet as it is.
    The builder link holds the diagram itself and doesn't expire; the saved image is a snapshot, so after a change
-   compose again and replace the file.
+   draw it again and replace the file.
+6. When the user asks for a change ("swap Vercel for Netlify", "no borders", "add Redis"), call revise_diagram with
+   the last "document" and the changes; it returns a new picture and link the same way.
 
 The diagram is drawn on Tekyous's servers and its image is stored there and reachable by its URL, so leave secrets,
 credentials and anything the user wants kept private out of names, notes and labels.
