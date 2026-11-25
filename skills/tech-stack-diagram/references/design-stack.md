@@ -10,7 +10,8 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
    are alternatives: draw the one that fits, or one diagram each, never their tools mixed), get_stack for a
    curated stack. For an existing project, list its technologies first, then look up every one of them with
    search_tools (the calls can run in parallel). Use catalogue slugs (e.g. "nextjs", "postgresql"); only what
-   search_tools does not find becomes a custom tool, with a name, an icon and a catalogue "category" slug (e.g.
+   search_tools does not find becomes a custom tool, with its own short name ("HTTPX", not "HTTPX · APIs / HTTP":
+   long names are cut off on the card), what it does in "caption", an icon and a catalogue "category" slug (e.g.
    "hosting-cloud"; the by-category layout puts it in that frame). A custom tool shows an icon, not a logo, so use
    them only for what the catalogue does not list.
 2. Write a spec (format "tekyous-diagram", version 1). Pick the view from what the user asked for:
@@ -19,7 +20,8 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
      connectors. For a larger stack (around ten tools or more), "template": "by-category" with the tools in "tools"
      and "custom" and no groups lays them out in Tekyous's catalogue category frames, the builder's own look.
      Title it "<project> tech stack", and say what the project is when its name doesn't ("acme-web storefront tech
-     stack", not "acme-web tech stack").
+     stack", not "acme-web tech stack"). A pipeline, an automation or an agent is still drawn as a stack: its tools
+     by role (Orchestration, AI, Storage), not its steps; describe the steps in your reply.
    - The stack and how it connects, when the user asks how the parts talk to each other (data flow, requests,
      deployment, "architecture"): the same groups, ordered the way data flows, with connectors between neighbouring
      groups (a connector that skips a group is drawn through it). Connector labels take one or two words.
@@ -52,27 +54,30 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
        the same way.
      - The title: "titleAlign": "center" spans it across the diagram; "titleColor" changes its colour.
      Vary the look from one diagram to the next instead of always sending the defaults.
-   - Group titles take one or two words.
+   - Group titles take one or two words and name a role, not a step: no "1 · Collect", "2 · Analyse" numbering.
    - Order the groups by weight: the core of the project first (App, Data, Hosting), so nothing minor sits in the
      middle. A service the app only calls (a contact form, email, analytics, payments for a side feature) goes in a
      side group: {"id": "services", "title": "Services", "side": "app", ...} draws it under (or beside) the group
      it names, only as big as its tools, instead of a full column or band.
-   - Add notes only for decisions worth explaining, each "near" the group or tool it is about.
+   - Add notes only for decisions worth explaining, one or two, each "near" the group or tool it is about.
 3. Call compose_diagram. Act on what comes back before showing it:
-   - "custom_matches": custom tools whose name is a catalogue tool; replace each with the slug, unless it is
-     really something else (your own service that shares the name).
+   - "custom_matches": custom tools whose name is a catalogue tool; replace each with the slug (its "change" is
+     ready for revise_diagram), unless it is really something else (your own service that shares the name).
    - "unresolved": slugs the catalogue does not know; fix the slug (search_tools) or make it a custom tool.
    - "warnings": catalogue rules, such as two tools that conflict or a missing piece (no hosting, no database).
      "info" ones are suggestions for a builder canvas: one asking for a language next to a framework does not apply
      when you left the language out on purpose.
    - "issues": layout problems in the drawn picture (overlaps, a connector through a card or a group, a card whose
      content is drawn small because of the size it was given).
+   - "advice": where the spec strays from a plain stack (connectors, numbered groups, project steps drawn as custom
+     tools, long names, many notes). Follow it unless the user asked for exactly that.
    The spec covers most layouts; a full canvas file (format "tekyous-canvas", with positions) is for exact placement
    the spec cannot express. In one, use the values the schema lists (the display's "category" is "none",
    "category", "subcategory" or "both", not true or false), and give cards a size in proportion to their content.
    Fix it with revise_diagram (the returned "document" plus changes such as {"replace": "nginx-custom", "with":
    "nginx"}) or a new compose_diagram call until "custom_matches", "unresolved" and "issues" are empty and
-   you have weighed each warning (for an existing project, a missing piece may simply be out of scope).
+   you have weighed each warning and each advice line (for an existing project, a missing piece may simply be out
+   of scope).
 4. Show the result:
    - Where the host renders MCP Apps (Claude, ChatGPT, VS Code, Cursor and others), the results of compose_diagram
      and revise_diagram show as the Tekyous diagram widget: the picture in the chat, with full screen and an "Open
