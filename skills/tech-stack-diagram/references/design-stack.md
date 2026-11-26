@@ -40,7 +40,9 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
        (logos only: a badge row, or 20 tools and more). "outline": "none" drops the card borders for a lighter,
        documentation-style picture.
      - Layout: groups as columns ("direction": "left-to-right", the default) or stacked bands ("top-to-bottom",
-       which suits many groups or a narrow page), or "template": "by-category" without groups.
+       which suits many groups or a narrow page), or "template": "by-category" without groups. Columns start at one
+       top edge, or are centred on the tallest when a connector joins two groups; "align": "top" or "center" picks
+       either. For exact positions, send a full canvas file instead of the spec.
      - Colour: each group gets its own frame colour by default, different per diagram. "color" on a group takes a
        palette key (sky, emerald, violet, amber, rose, slate) or any #rrggbb, so colours can follow a brand or a
        meaning (for example green for everything hosted).

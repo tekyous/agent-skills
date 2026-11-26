@@ -58,7 +58,8 @@ Pick the look for where the picture goes; the default is not always the best one
   `detailed` (category, subcategory and pricing), `tile` (logo over name) or `icon` (logos only, for a badge row or
   20 tools and more). `"outline": "none"` drops the card borders.
 - **Layout:** groups as columns (`"direction": "left-to-right"`, the default) or stacked bands (`"top-to-bottom"`),
-  or `"template": "by-category"` without groups.
+  or `"template": "by-category"` without groups. Columns start at one top edge, or are centred on the tallest when a
+  connector joins two groups; `"align": "top"` or `"center"` picks either.
 - **Colour:** each group gets a different frame colour by default. `"color"` on a group takes a palette key (`sky`,
   `emerald`, `violet`, `amber`, `rose`, `slate`) or any `#rrggbb`.
 - **Frames:** `"fill"` (`none` for an outline, `soft`, `strong`, `solid`), `"border"` (`dashed` for an optional or
