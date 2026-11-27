@@ -128,6 +128,7 @@ structure, C4 levels, sequence or entity-relationship diagrams.
 | `skills/tech-stack-diagram/` | The diagram skill: `SKILL.md`, the spec guidance and the offline encoder |
 | `.claude-plugin/` | The Claude Code plugin (`plugin.json`) and this repository as its marketplace (`marketplace.json`) |
 | `.mcp.json` | The plugin's connection to the Tekyous MCP server |
+| `assets/icon.png`, each skill's `assets/` and `agents/openai.yaml` | Icons and display names for skill and plugin listings (ClawHub, Codex) |
 | `server.json` | The server's entry in the [MCP Registry](https://registry.modelcontextprotocol.io), which Glama and other directories copy |
 | `glama.json` | Names this repository's maintainers on [Glama](https://glama.ai) |
 | `scripts/sync_design_stack.py` | Copies the server's `design_stack` prompt into the skill, so both give the same guidance |
