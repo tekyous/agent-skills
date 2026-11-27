@@ -63,6 +63,8 @@ The skills work with or without the MCP server connected (see [How it works](#ho
 
 ### Any MCP client: the server only
 
+[![Tekyous MCP connector](https://glama.ai/mcp/connectors/dev.tekyous/tekyous/badges/score.svg)](https://glama.ai/mcp/connectors/dev.tekyous/tekyous)
+
 Add `https://mcp.tekyous.dev/mcp` as a remote (streamable HTTP) MCP server. Setup for Claude, Cursor, VS Code with
 GitHub Copilot, Codex, Antigravity, Grok Build, Z Code and other agents: [tekyous.dev/mcp](https://tekyous.dev/mcp?utm_source=github&utm_medium=readme#setup).
 
