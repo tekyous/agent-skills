@@ -56,8 +56,9 @@ Put the core groups first. A service the app only calls (a contact form, email, 
 Pick the look for where the picture goes; the default is not always the best one:
 - **Cards** (`"display": {"preset": ...}`): `simple` (logo and name, the default), `standard` (adds the category),
   `detailed` (category, subcategory and pricing), `tile` (logo over name) or `icon` (logos only, for a badge row or
-  20 tools and more). `"outline": "none"` drops the card borders. `"background": "light"` draws a cream ground
-  instead of navy: offer it when the picture goes on a light page (many READMEs and docs).
+  20 tools and more). `"outline": "none"` drops the card borders. `"background": "light"` draws a light sand ground
+  instead of navy: offer it when the picture goes on a light page (many READMEs and docs). `"cardBg"` gives every
+  card one colour (to match a brand) instead of a `"bg"` on each tool.
 - **Layout:** groups as columns (`"direction": "left-to-right"`, the default) or stacked bands (`"top-to-bottom"`),
   or `"template": "by-category"` without groups. Columns start at one top edge, or are centred on the tallest when a
   connector joins two groups; `"align": "top"` or `"center"` picks either.

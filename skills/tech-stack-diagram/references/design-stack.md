@@ -38,7 +38,9 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
        picture), "standard" (adds each tool's category: helps readers who don't know the tools), "detailed"
        (category, subcategory and pricing: when cost matters), "tile" (logo over name: a compact grid) or "icon"
        (logos only: a badge row, or 20 tools and more). "outline": "none" drops the card borders for a lighter,
-       documentation-style picture.
+       documentation-style picture. "background": "light" draws the diagram on a light sand ground instead of
+       navy; the default stays navy, so offer light when the picture goes on a light page (many READMEs and docs)
+       and use it when the user asks for a light picture.
      - Layout: groups as columns ("direction": "left-to-right", the default) or stacked bands ("top-to-bottom",
        which suits many groups or a narrow page), or "template": "by-category" without groups. Columns start at one
        top edge, or are centred on the tallest when a connector joins two groups; "align": "top" or "center" picks
@@ -53,7 +55,8 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
        own card background, name colour or a bigger logo: {"slug": "postgresql", "bg": "emerald", "nameColor":
        "#ffffff", "logoScale": 1.4} ("logoScale" 0.6 to 1.8; "bg": "transparent" leaves the card bare). One or two
        tools per diagram: when everything stands out, nothing does. Connectors take a "color" and "line": "dashed"
-       the same way.
+       the same way. To recolour every card at once (to match a brand), set "display": {"cardBg": ...} instead
+       of a "bg" on each tool.
      - The title: "titleAlign": "center" spans it across the diagram; "titleColor" changes its colour.
      Vary the look from one diagram to the next instead of always sending the defaults.
    - Group titles take one or two words and name a role, not a step: no "1 · Collect", "2 · Analyse" numbering.
@@ -88,7 +91,8 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
    - Where no picture shows (a terminal or a host without MCP Apps), show the image or give its URL, and give the
      builder link: it opens the diagram, fully editable, in Tekyous.
    Then say in a line which look you chose and offer the others (the result's "look" lists them): another card
-   style, no borders, bands instead of columns, other colours. Users often don't know they can ask.
+   style, no borders, a light background, bands instead of columns, other colours. Users often don't know they can
+   ask.
 5. To put the picture in a repository (a README, docs): if you can write files, download the image URL into the repo
    (for example docs/tech-stack-diagram.png) and add the "markdown" snippet with the image path changed to that file; keep
    its link to the builder, so readers can open and edit the diagram. Otherwise give the user the snippet as it is.
