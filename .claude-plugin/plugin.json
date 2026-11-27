@@ -1,6 +1,6 @@
 {
   "name": "tekyous",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Tech stacks from your agent, grounded in Tekyous: the MCP server (developer tools catalogue, curated stacks, stack recommendations, diagrams) and two skills. tech-stack-recommendation helps choose tools; tech-stack-diagram reads the project, draws its stack, saves the PNG and adds it to the README with a link to the editable diagram.",
   "author": {
     "name": "Tekyous",
