@@ -13,7 +13,7 @@ import zlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SCRIPT = ROOT / "skills" / "tech-stack-diagram" / "scripts" / "doc_link.py"
+SCRIPT = ROOT / "plugins" / "tekyous" / "skills" / "tech-stack-diagram" / "scripts" / "doc_link.py"
 FIXTURES = json.loads((Path(__file__).with_name("doc_link_fixtures.json")).read_text(encoding="utf-8"))
 
 sys.path.insert(0, str(SCRIPT.parent))

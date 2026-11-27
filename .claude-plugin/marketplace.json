@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "tekyous",
-      "source": "./",
+      "source": "./plugins/tekyous",
       "description": "Choose and draw your tech stack with Tekyous: stack recommendations grounded in a curated tools catalogue, and tech stack diagrams for your README that open editable in the Tekyous builder. Bundles the Tekyous MCP server and two skills.",
       "version": "1.3.2",
       "category": "development",

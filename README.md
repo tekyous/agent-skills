@@ -40,7 +40,7 @@ run them as `/tekyous:tech-stack-recommendation` and `/tekyous:tech-stack-diagra
 npx skills add tekyous/agent-skills
 ```
 
-Or copy the folders in [`skills/`](skills) into your agent's skills folder:
+Or copy the folders in [`plugins/tekyous/skills/`](plugins/tekyous/skills) into your agent's skills folder:
 
 | Agent | Project folder | User folder |
 |---|---|---|
@@ -118,19 +118,20 @@ structure, C4 levels, sequence or entity-relationship diagrams.
   anything private out of names and notes. Calls are logged without IP addresses for 90 days.
   Details: [tekyous.dev/privacy](https://tekyous.dev/privacy#mcp-server).
 - **Not done:** no API key, no account, no install hooks, no downloaded code run. The only script is
-  [`doc_link.py`](skills/tech-stack-diagram/scripts/doc_link.py), the offline encoder (Python standard library).
+  [`doc_link.py`](plugins/tekyous/skills/tech-stack-diagram/scripts/doc_link.py), the offline encoder (Python standard library).
 
 ## What's in this repository
 
 | Path | What it is |
 |---|---|
-| `skills/tech-stack-recommendation/` | The recommendation skill |
-| `skills/tech-stack-diagram/` | The diagram skill: `SKILL.md`, the spec guidance and the offline encoder |
-| `.claude-plugin/` | The Claude Code plugin (`plugin.json`) and this repository as its marketplace (`marketplace.json`) |
-| `.mcp.json` | The plugin's connection to the Tekyous MCP server |
+| `plugins/tekyous/skills/tech-stack-recommendation/` | The recommendation skill |
+| `plugins/tekyous/skills/tech-stack-diagram/` | The diagram skill: `SKILL.md`, the spec guidance and the offline encoder |
+| `plugins/tekyous/` | The Claude Code plugin: `.claude-plugin/plugin.json`, its icon, `.mcp.json` and the skills. Kept free of scripts other than the skill's own, so it can be listed in Claude's plugin directory |
+| `.claude-plugin/marketplace.json` | This repository as the plugin's marketplace (`/plugin marketplace add tekyous/agent-skills`) |
+| `plugins/tekyous/.mcp.json` | The plugin's connection to the Tekyous MCP server |
 | `server.json` | The server's entry in the [MCP Registry](https://registry.modelcontextprotocol.io), which Glama and other directories copy |
 | `glama.json` | Names this repository's maintainers on [Glama](https://glama.ai) |
-| `.github/scripts/sync_design_stack.py` | Copies the server's `design_stack` prompt into the skill, so both give the same guidance |
+| `scripts/sync_design_stack.py` | Copies the server's `design_stack` prompt into the skill, so both give the same guidance |
 | `tests/` | Checks the offline links match the server's own byte for byte |
 
 The Tekyous MCP server itself, the catalogue and the renderer are not open source. This repository holds only the
@@ -140,11 +141,11 @@ packaging and the instructions, under the MIT licence.
 
 ```bash
 python3 -m unittest discover tests            # offline links match the server's encoder
-python3 .github/scripts/sync_design_stack.py --check  # the skill's guidance matches the live prompt
+python3 scripts/sync_design_stack.py --check  # the skill's guidance matches the live prompt
 claude plugin validate .                      # the marketplace and plugin manifests
 ```
 
-After the server's `design_stack` prompt changes, run `python3 .github/scripts/sync_design_stack.py` and commit the result.
+After the server's `design_stack` prompt changes, run `python3 scripts/sync_design_stack.py` and commit the result.
 
 Something broke, or an agent drew or recommended something odd? Open an issue or write to
 [contact@tekyous.dev](mailto:contact@tekyous.dev).
