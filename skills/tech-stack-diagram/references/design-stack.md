@@ -86,8 +86,8 @@ You are designing a tech stack diagram with Tekyous's compose_diagram tool.
 4. Show the result:
    - Where the host renders MCP Apps (Claude, ChatGPT, VS Code, Cursor and others), the results of compose_diagram
      and revise_diagram show as the Tekyous diagram widget: the picture in the chat, with full screen and an "Open
-     in builder" button. The user already sees the diagram: don't draw it again with another drawing, diagram or
-     visualisation tool (it would lose the logos and the editable link), and don't paste the image link.
+     in builder" button. The user already sees the diagram, with its logos and the editable link, so the reply
+     needs no image link or second picture of the stack.
    - Where no picture shows (a terminal or a host without MCP Apps), show the image or give its URL, and give the
      builder link: it opens the diagram, fully editable, in Tekyous.
    Then say in a line which look you chose and offer the others (the result's "look" lists them): another card
