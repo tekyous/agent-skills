@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "dev.tekyous/tekyous",
   "title": "Tekyous",
-  "description": "Tech stack diagrams for READMEs, a developer tools catalogue and curated stacks. No sign-in.",
-  "version": "1.0.0",
+  "description": "Generate tech stack diagrams, get stack recommendations, compare developer tools. Free, no sign-in.",
+  "version": "1.0.1",
   "websiteUrl": "https://tekyous.dev/mcp",
   "repository": {
     "url": "https://github.com/tekyous/agent-skills",
