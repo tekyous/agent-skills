@@ -3,8 +3,24 @@
   "name": "dev.tekyous/tekyous",
   "title": "Tekyous",
   "description": "Generate tech stack diagrams, get stack recommendations, compare developer tools. Free, no sign-in.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "websiteUrl": "https://tekyous.dev/mcp",
+  "icons": [
+    {
+      "src": "https://assets.tekyous.dev/brand/icon@512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    },
+    {
+      "src": "https://assets.tekyous.dev/brand/icon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
   "repository": {
     "url": "https://github.com/tekyous/agent-skills",
     "source": "github"
